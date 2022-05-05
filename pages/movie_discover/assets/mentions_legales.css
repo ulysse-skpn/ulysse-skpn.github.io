@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+p,
+ul li{
+    color: white;
+}
+h2,h3{
+    color: #FFCC33;
+}
+
+#reglage_hauteur_text{
+    margin-top: 90px;
+}

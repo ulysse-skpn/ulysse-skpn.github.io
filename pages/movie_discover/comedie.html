@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie discover</title>
+
+
+    <!-- BOOTSTRAP CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS PERSO -->
+    <link rel="stylesheet" href="assets/style.css">
+
+
+    <!-- NECESSAIRE AU BON FONCTIONNEMENT DU CHAT !!! -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+    
+</head>
+<body>
+
+
+
+  <header id="alignementHeader">
+    <nav class="navbar navbar-expand-sm">
+        <a class="navbar-brand" href="accueil.html" id="Moviediscover">Movie Discover</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#" id="buttonSeConnecter" data-target="modalConnexion" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="buttonSinscrire" data-target="modalInscription" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">S'inscrire</a>
+                </li>
+                  <li class="nav-item" id="displayChat">
+                    <a class="nav-link" href="#" id="buttonChat" data-target="modalChat" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Chat</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="decouverte" data-target="#modalDecouverte" data-toggle="modal">Découverte</a>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="fas fa-grip-horizontal"></i>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" id="dropright">
+                      <li><a tabindex="-1" href="actualités.html">Actualités</a></li>
+                      <li class="dropdown-submenu">
+                      <a class="test" tabindex="-1" href="#">Catégories <span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="submenu">
+                          <li><a tabindex="-1" href="action.html">Action</a></li>
+                          <li><a tabindex="-1" href="horreur.html">Horreur</a></li>
+                          <li><a tabindex="-1" href="fantastique.html">Fantastique</a></li>
+                          <li><a tabindex="-1" href="jeunesse.html">Jeunesse</a></li>
+                          <li><a tabindex="-1" href="comedie.html">Comédie</a></li>
+                        </ul>
+                      </li>
+                      <li><a tabindex="-1" href="contact.html">Contact</a></li>
+                    </ul>
+                    </div>
+                    <script src="js/dropright.js"></script>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <!-- MODAL SE CONNECTER -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="connectForm">
+                    <div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle">Se connecter</h5></div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailConnexion">
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordConnexion">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Déconnexion</button>
+                      <button type="submit" class="btn btn-primary" id="connect">Connexion</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- MODAL S'INSCRIRE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalInscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="signUpForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle2">S'inscrire</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailInscription">
+                        <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit 
+                        </small>
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordInscription">
+                        <label class="d-block my-3">Confirmez votre mot de passe</label>
+                        <input type="password" placeholder='Confirmez Mot de passe' id="inputAnotherPasswordInscription">
+                        <div class="form-group form-check my-3">
+                            <input type="checkbox" id="condition" class="form-check-input">
+                            <label class="form-check-label yellowText"><a href="#">Accepter les conditions générales</a></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="createAccount">Création de compte</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- MODAL CHAT -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalChat" tabindex="-1" role="dialog" aria-labelledby="modalChat" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="chat">
+                <div id="firechat-wrapper">
+                  <script src="js/firechat.js"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!-- MODAL DECOUVERTE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalDecouverte" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-body" >
+                  <img src="" alt="image à découvrir" id="discover">
+                <script src="js/discover.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+
+
+    <div class="text-center" id="_categories_">
+        <a href="action.html" class="h3 my-5 mx-3 yellowText">Action</a>
+        
+        <a href="horreur.html" class="h3 my-5 mx-3 yellowText">Horreur</a>
+        
+        <a href="fantastique.html" class="h3 my-5 mx-3 yellowText">Fantastique</a>
+        
+        <a href="jeunesse.html" class="h3 my-5 mx-3 yellowText">Jeunesse</a>
+        
+        <a href="comedie.html" class="h3 my-5 mx-3 yellowText">Comédie</a>
+    </div>
+
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10">
+    <h1 class="text-center mb-4 seb" id="genre">Comédie</h1>
+    <h1 id="replaceTitle1">Neuilly sa mère</h1>
+    <div class="film1">
+      <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/H_z1f12HEJM?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img class="d-inline-block" src="assets/affiches/comedie-2.jpg" alt="" id="image_a_remplacer1">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Post Content -->
+  <div class="col-md-10">
+    <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+    <div id='texte_a_remplacer1'>
+        <p>En 2008, Sami Benboudaoud découvrait l’enfer de Neuilly-sur-seine !
+            Dix ans plus tard, alors que tout va pour le mieux pour Sami qui termine brillamment ses études de sciences politiques, plus rien ne va pour son cousin Charles de Chazelle. Depuis la défaite de son idole Sarkozy aux présidentielles, il a sombré dans une profonde dépression quand sa famille perd toute sa fortune et doit quitter Neuilly. Rejetés de tous, les Chazelle trouvent refuge chez Sami, cité Picasso, à Nanterre !
+            Dès lors, pour Sami et les habitants de sa cité, la vie ne sera plus jamais un long fleuve tranquille.</p>
+    </div>
+  </div>
+  
+<!-- Image -->
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10">
+    <h1 id="replaceTitle2">Ted 2</h1>
+    <div class="film1">
+      <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/Ewp9umK4V0E?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img class="d-inline-block" src="assets/affiches/comedie-1.jpg" alt="" id="image_a_remplacer2">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Post Content -->
+  <div class="col-md-10">
+    <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+    <div id='texte_a_remplacer2'>
+        <p>Les deux meilleurs amis du monde vont cette fois-ci s’aventurer en territoire totalement inconnu : le moment est venu de légaliser l’existence de Ted. 
+            Nos deux compères vivent toujours à Boston, mais alors que John est désormais célibataire, Ted a emménagé avec Tamy Lynn, la bombe de ses rêves. 
+            Alors qu’ils traversent leurs premiers orages maritaux, ils décident de faire un enfant pour consolider leur couple. Leurs espoirs sont brisés lorsque la cour du Massachussetts refuse de reconnaître le statut de personne à Ted, et lui octroie celui de « propriété », ce qui le rend inapte à l’adoption. 
+            Il est licencié de son travail au magasin et informé sans autre forme de procès que son mariage est annulé. 
+            Furieux et dégoûté, Ted va canaliser sa frustration sur la restauration de ses droits, et demander à son meilleur ami de l’aider à poursuivre en justice la Cour du Massachussetts. 
+            Ils engagent alors en tant qu’avocat une jeune activiste de la légalisation de la marijuana : Samantha L. Jackson. 
+            Mais Ted est débouté. Le trio s’embarque alors dans un road trip vers New York afin de tenter de convaincre le célèbre avocat des droits civils Patrick Meighan de porter leur dossier en appel. 
+            Leur but est de prouver qu’un ours en peluche accro à la bière et à la fumette a les mêmes droits que n’importe quel Américain accro à la bière et à la fumette.</p>
+    </div>
+  </div>
+ 
+
+
+<!-- Image -->
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10">
+    <h1 id="replaceTitle3">Very Bad Trip 3</h1>
+    <div class="film1">
+      <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/hHqR9Tq16_E?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img class="d-inline-block" src="assets/affiches/comedie-3.jpg" alt="" id="image_a_remplacer3">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Post Content -->
+  <div class="col-md-10">
+    <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+    <div id='texte_a_remplacer3'>
+      <p>Au réveil d'un enterrement de vie de garçon bien arrosé, les trois amis du fiancé se rendent compte qu'il a disparu 40 heures avant la cérémonie de mariage. Ils vont alors devoir faire fi de leur gueule de bois et rassembler leurs bribes de souvenirs pour comprendre ce qui s'est passé.</p>
+    </div>
+  </div>
+ 
+<!-- Image -->
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10">
+    <h1 id="replaceTitle4">Ma Reum</h1>
+    <div class="film1">
+      <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/X8HJNmKDLec?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img class="d-inline-block" src="assets/affiches/comedie-4.jpg" alt="" id="image_a_remplacer4">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Post Content -->
+  <div class="col-md-10">
+    <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+    <div id='texte_a_remplacer4'>
+      <p>Tout va pour le mieux dans la vie sans histoires de Fanny... jusqu'au jour où elle découvre que son fils chéri, Arthur, 9 ans, est le bouc émissaire de trois garçons de son école. Fanny ne laissera pas seul son fils face à ses petits bourreaux : elle va rendre à ces sales gosses la monnaie de leur pièce. Coups fourrés et pièges de cours de récré, désormais ce sera "oeil pour oeil et dent pour dent".</p>
+    </div>
+  </div>
+ 
+<!-- Image -->
+
+<div class="container">
+<div class="row">
+  <div class="col-md-10">
+      <h1 id="replaceTitle5">Scary movie 4</h1>
+    <div class="film1">
+      <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/J5n-yaLocgY?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img class="d-inline-block" src="assets/affiches/comedie-5.jpg" alt="" id="image_a_remplacer5">
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Post Content -->
+  <div class="col-md-10">
+    <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+    <div id='texte_a_remplacer5'>
+      <p>Cindy Campbell est toujours terriblement blonde. Mais bourrée de bonnes intentions. Ça tombe bien, elle vient d'être engagée comme aide à domicile auprès d'une vieille grabataire qui, grâce à ses soins vigilants, risque d'être enlevée à l'affection des siens beaucoup plus vite que prévu.
+          Pendant que le spectre d'un gamin nu comme une poêle à frire fait de son mieux pour l'épouvanter à renfort de gribouillis sanguinolents, Cindy découvre que le voisin de sa protégée est du genre liant malgré l'irruption constante de deux petits êtres qui se prétendent ses enfants.
+          Sur ce, des tripodes géants débarquent, deux campeurs sous une tente entonnent un slow de Lionel Richie, des gens ont des problèmes de cervicales, des individus en toge rouge customisée font fuir des villageois, bref c'est la gabegie...</p>
+    </div>
+  </div>
+    
+  
+  
+
+
+          <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+          <footer id='footer'>
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <span class=" h5 mx-2 my-2">©</span>
+                <div class="h5 mx-2 my-2">
+                  <a href="contact.html" target="blank">CONTACT</a>
+                </div>
+                <span class=" h5 mx-2 my-2">/</span>
+                <div class="h5 mx-2 my-2 ">
+                  <a href="mentions_legales.html" target="blank">MENTIONS LEGALES</a>
+                </div>          
+              </div>
+            </div>
+          </footer>
+        <!-- FIN DE FOOTER -->
+
+
+<!-- BOOTSTRAP JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-messaging.js"></script>
+
+
+<!-- JS PERSO -->
+<script src="js/input.js"></script>
+<script src="js/config.js"></script>
+
+</body>
+</html>

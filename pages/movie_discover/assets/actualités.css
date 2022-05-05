@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+p{
+    color: black;
+}
+
+#div_reglage_hauteur{
+    width: 90%;
+}
+#div_actu{
+    margin: 10px;
+}
+.bande-annonce{
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+}

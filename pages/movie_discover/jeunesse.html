@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie discover</title>
+
+
+    <!-- BOOTSTRAP CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS PERSO -->
+    <link rel="stylesheet" href="assets/style.css">
+
+
+    <!-- NECESSAIRE AU BON FONCTIONNEMENT DU CHAT !!! -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+    
+</head>
+<body>
+
+
+
+  <header id="alignementHeader">
+    <nav class="navbar navbar-expand-sm">
+        <a class="navbar-brand" href="accueil.html" id="Moviediscover">Movie Discover</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#" id="buttonSeConnecter" data-target="modalConnexion" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="buttonSinscrire" data-target="modalInscription" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">S'inscrire</a>
+                </li>
+                  <li class="nav-item" id="displayChat">
+                    <a class="nav-link" href="#" id="buttonChat" data-target="modalChat" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Chat</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="decouverte" data-target="#modalDecouverte" data-toggle="modal">Découverte</a>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="fas fa-grip-horizontal"></i>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" id="dropright">
+                      <li><a tabindex="-1" href="actualités.html">Actualités</a></li>
+                      <li class="dropdown-submenu">
+                      <a class="test" tabindex="-1" href="#">Catégories <span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="submenu">
+                          <li><a tabindex="-1" href="action.html">Action</a></li>
+                          <li><a tabindex="-1" href="horreur.html">Horreur</a></li>
+                          <li><a tabindex="-1" href="fantastique.html">Fantastique</a></li>
+                          <li><a tabindex="-1" href="jeunesse.html">Jeunesse</a></li>
+                          <li><a tabindex="-1" href="comedie.html">Comédie</a></li>
+                        </ul>
+                      </li>
+                      <li><a tabindex="-1" href="contact.html">Contact</a></li>
+                    </ul>
+                    </div>
+                    <script src="js/dropright.js"></script>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <!-- MODAL SE CONNECTER -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="connectForm">
+                    <div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle">Se connecter</h5></div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailConnexion">
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordConnexion">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Déconnexion</button>
+                      <button type="submit" class="btn btn-primary" id="connect">Connexion</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- MODAL S'INSCRIRE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalInscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="signUpForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle2">S'inscrire</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailInscription">
+                        <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit 
+                        </small>
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordInscription">
+                        <label class="d-block my-3">Confirmez votre mot de passe</label>
+                        <input type="password" placeholder='Confirmez Mot de passe' id="inputAnotherPasswordInscription">
+                        <div class="form-group form-check my-3">
+                            <input type="checkbox" id="condition" class="form-check-input">
+                            <label class="form-check-label yellowText"><a href="#">Accepter les conditions générales</a></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="createAccount">Création de compte</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- MODAL CHAT -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalChat" tabindex="-1" role="dialog" aria-labelledby="modalChat" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="chat">
+                <div id="firechat-wrapper">
+                  <script src="js/firechat.js"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!-- MODAL DECOUVERTE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalDecouverte" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-body" >
+                  <img src="" alt="image à découvrir" id="discover">
+                <script src="js/discover.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+
+
+
+    <div class="text-center" id="_categories_">
+        <a href="action.html" class="h3 my-5 mx-3 yellowText">Action</a>
+            
+        <a href="horreur.html" class="h3 my-5 mx-3 yellowText">Horreur</a>
+        
+        <a href="fantastique.html" class="h3 my-5 mx-3 yellowText">Fantastique</a>
+        
+        <a href="jeunesse.html" class="h3 my-5 mx-3 yellowText">Jeunesse</a>
+        
+        <a href="comedie.html" class="h3 my-5 mx-3 yellowText">Comédie</a>
+    </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="text-center mb-4 seb" id="genre">Jeunesse</h1>
+        <h1 id="replaceTitle1">Le voyage de Chihiro</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/Eyk1XckQWxY?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/jeunesse-1.jpg" alt="" id="image_a_remplacer1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer1'>
+          <p>Chihiro, dix ans, a tout d'une petite fille capricieuse. Elle s'apprête à emménager avec ses parents dans une nouvelle demeure.
+              Sur la route, la petite famille se retrouve face à un immense bâtiment rouge au centre duquel s'ouvre un long tunnel. De l'autre côté du passage se dresse une ville fantôme. Les parents découvrent dans un restaurant désert de nombreux mets succulents et ne tardent pas à se jeter dessus. Ils se retrouvent alors transformés en cochons.
+              Prise de panique, Chihiro s'enfuit et se dématérialise progressivement. L'énigmatique Haku se charge de lui expliquer le fonctionnement de l'univers dans lequel elle vient de pénétrer. Pour sauver ses parents, la fillette va devoir faire face à la terrible sorcière Yubaba, qui arbore les traits d'une harpie méphistophélique.</p>
+        </div>
+      </div>
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle2">L'âge de glace 4</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/HA9SAy60vRM?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/jeunesse-2.jpg" alt="" id="image_a_remplacer2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer2'>
+          <p>Alors que Scrat poursuit inlassablement son gland avec toujours autant de malchance, il va cette fois provoquer un bouleversement d’une ampleur planétaire… Le cataclysme continental qu’il déclenche propulse Manny, Diego et Sid dans leur plus grande aventure. Tandis que le monde bouge au sens propre du terme, Sid va retrouver son épouvantable grand-mère, et la petite troupe va affronter un ramassis de pirates bien décidés à les empêcher de rentrer chez eux...</p>
+        </div>
+      </div>
+     
+
+
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle3">Spider-man : New generation</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/h3OanlSTaEI?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/jeunesse-3.jpg" alt="" id="image_a_remplacer3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer3'>
+          <p>Spider-Man : New Generation suit les aventures de Miles Morales, un adolescent afro-américain et portoricain qui vit à Brooklyn et s’efforce de s’intégrer dans son nouveau collège à Manhattan. Mais la vie de Miles se complique quand il se fait mordre par une araignée radioactive et se découvre des super-pouvoirs : il est désormais capable d’empoisonner ses adversaires, de se camoufler, de coller littéralement aux murs et aux plafonds ; son ouïe est démultipliée... Dans le même temps, le plus redoutable cerveau criminel de la ville, le Caïd, a mis au point un accélérateur de particules nucléaires capable d’ouvrir un portail sur d’autres univers. Son invention va provoquer l’arrivée de plusieurs autres versions de Spider-Man dans le monde de Miles, dont un Peter Parker plus âgé, Spider-Gwen, Spider-Man Noir, Spider-Cochon et Peni Parker, venue d’un dessin animé japonais.</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle4">Vice-versa</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/J4_8jijwNs0?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/jeunesse-4.jpg" alt="" id="image_a_remplacer4">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer4'>
+          <p>Au Quartier Général, le centre de contrôle situé dans la tête de la petite Riley, 11 ans, cinq Émotions sont au travail. À leur tête, Joie, débordante d’optimisme et de bonne humeur, veille à ce que Riley soit heureuse. Peur se charge de la sécurité,  Colère s’assure que la justice règne, et Dégoût empêche Riley de se faire empoisonner la vie – au sens propre comme au figuré. Quant à Tristesse, elle n’est pas très sûre de son rôle. Les autres non plus, d’ailleurs… Lorsque la famille de Riley emménage dans une grande ville, avec tout ce que cela peut avoir d’effrayant, les Émotions ont fort à faire pour guider la jeune fille durant cette difficile transition. Mais quand Joie et Tristesse se perdent accidentellement dans les recoins les plus éloignés de l’esprit de Riley, emportant avec elles certains souvenirs essentiels, Peur, Colère et Dégoût sont bien obligés de prendre le relais. Joie et Tristesse vont devoir s’aventurer dans des endroits très inhabituels comme la Mémoire à long terme, le Pays de l’Imagination, la Pensée Abstraite, ou la Production des Rêves, pour tenter de retrouver le chemin du Quartier Général afin que Riley puisse passer ce cap et avancer dans la vie…</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle5">Dragons 2</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/zizhykXsrPI?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/jeunesse-5.jpg" alt="" id="image_a_remplacer5">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer5'>
+          <p>Tandis qu’Astrid, Rustik et le reste de la bande se défient durant des courses sportives de dragons devenues populaires sur l’île, notre duo désormais inséparable parcourt les cieux, à la découverte de territoires inconnus et de nouveaux mondes. Au cours de l’une de leurs aventures, ils découvrent une grotte secrète qui abrite des centaines de dragons sauvages, dont le mystérieux Dragon Rider. Les deux amis se retrouvent alors au centre d’une lutte visant à maintenir la paix. Harold et Krokmou vont se battre pour défendre leurs valeurs et préserver le destin des hommes et des dragons.</p>
+        </div>
+      </div>
+      <!-- Comments Form -->    
+  
+     
+
+
+
+          <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+          <footer id='footer'>
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <span class=" h5 mx-2 my-2">©</span>
+                <div class="h5 mx-2 my-2">
+                  <a href="contact.html" target="blank">CONTACT</a>
+                </div>
+                <span class=" h5 mx-2 my-2">/</span>
+                <div class="h5 mx-2 my-2 ">
+                  <a href="mentions_legales.html" target="blank">MENTIONS LEGALES</a>
+                </div>          
+              </div>
+            </div>
+          </footer>
+        <!-- FIN DE FOOTER -->
+
+
+<!-- BOOTSTRAP JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-messaging.js"></script>
+
+
+<!-- JS PERSO -->
+<script src="js/input.js"></script>
+<script src="js/config.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+body{
+    background-image: url(images/bg-image.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#reglage_hauteur{
+    margin-top: 90px;
+}

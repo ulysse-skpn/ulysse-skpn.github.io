@@ -1,0 +1,264 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+body{
+    background-color: #000000e0;
+}
+p{
+    color: white;
+}
+h1,h2,h3{
+    color: #FFCC33;
+}
+nav{
+    height: 80px;
+    background-color: #000000e0;
+    width: 100%;
+}
+iframe{
+  width: 395 px ;
+  height: 270 px ;
+}
+.navbar-brand{
+    font-size: 2rem;
+    text-align: center;
+    justify-content: center;
+    margin-left: 10rem;
+}
+#header,
+span,
+.titre_slide_us,
+h5{
+    color: #FFCC33;
+}
+a:link,
+a:active,
+a:visited{
+    color: #FFCC33;
+    text-decoration: none;
+}
+a:hover{
+    color: rgb(138, 99, 0);
+    transition: 500ms;
+}
+a{
+    text-decoration: none;
+    color: #FFCC33;
+}
+.carousel-caption {
+    transform: translateY(-60%);
+    bottom: 0;
+    top: 60%;
+  }
+#buttonSeConnecter,
+#buttonSinscrire,
+#buttonChat,
+.fas{
+    color: #FFCC33;
+}
+#buttonSeConnecter:hover,
+#buttonSinscrire:hover,
+#buttonChat:hover,
+#decouverte:hover{
+  background-color: #FFCC33;
+  color: black;
+  transition: 400ms;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+#dropdownmenu{
+    background-color: #000000e0;
+}
+label{
+    color: #FFCC33;
+}
+.modal-content{
+    background-color: #000000e0;
+}
+
+#chat{
+    width: 450px;
+}
+
+#firechat-wrapper {
+    height: 475px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #000000e0 ;
+    margin: 50px auto;
+    text-align: center;
+    /* -webkit-border-radius: 4px;
+    -moz-border-radius: 4px; */
+    border-radius: 4px;
+    /* -webkit-box-shadow: 0 5px 25px #666;
+    -moz-box-shadow: 0 5px 25px #666;
+    box-shadow: 0 5px 25px #666; */
+  }
+
+  #discover{
+    height: 550px;
+  }
+
+  #footer{
+      bottom: 0;
+      width: 100%;
+      background-color: #000000e0;
+  }
+  #bg-contact{
+      background-color: #000000e0;
+  }
+
+  #_categories_{
+      margin-top: 50px;
+  }
+
+  .dropdown-submenu {
+    position: relative;
+  }
+  
+  .dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+  }
+
+  #dropright,#submenu{
+      background-color: #000000e0;
+  }
+
+  .dropdown a{
+      margin-left: 15px;
+  }
+
+  .dropdown-toggle::after{
+    border-top: .3em solid #FFCC33;
+    border-right: .3em solid;
+    border-bottom: 0 #FFCC33;
+    border-left: .3em solid;
+  }
+
+  .navbar-toggler{
+    background: linear-gradient(#FFCC33, white);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-right: 1.5rem;
+    width: 25px;
+    height: 25px;
+  }
+
+  #navbarNavDropdown{
+    background-color: #000000e0;
+  }
+
+  ul.navbar-nav{
+    flex-direction: row;
+  }
+  a.nav-link{
+      margin: 0 10px;
+  }
+
+  .dropdown{
+    z-index: 2;
+  }
+
+  iframe{
+      height: 315px;
+      width: 560px;
+  }
+
+  @media (max-width: 813px){
+    .navbar-brand{
+        margin-left: 5rem;
+    }
+  }
+
+  @media (max-width: 793px){
+    h1{
+      font-size: 150%;
+      margin-top: 5px;
+    }
+  }
+
+  @media (max-width: 733px){
+    .navbar-brand{
+        margin-left: 2rem;
+    }
+    p,a{
+        font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 710px){
+    iframe{
+      height: 250px;
+      width: 444px;
+    }
+  }
+
+  @media (max-width: 685px){
+    .nav-link{
+        font-size: 0.7rem;
+    }
+    .navbar-brand{
+        font-size: 1rem;
+    }
+    #chat{
+        width: 250px;
+    }
+  }
+
+  @media (max-width: 478px){
+    .carousel-inner p,a.nav-link{
+        font-size: 0.5rem;
+    }
+    #discover{
+        height: 350px;
+      }
+      iframe{
+        height: 200px;
+        width: 355px;
+      }
+  }
+
+  @media (max-width: 350px){
+    p{
+        font-size: 0.7rem;
+    }
+    .carousel-inner p,a.nav-link{
+        font-size: 0.4rem;
+    }
+    .carousel-caption {
+        transform: translateY(-30%);
+        bottom: 0;
+        top: 30%;
+      }
+  }
+
+  @media (max-width: 330px){
+    h1{
+      font-size: 1.3rem;
+    }
+    .carousel-caption {
+        transform: translateY(-25%);
+        bottom: 0;
+        top: 25%;
+      }
+  }
+
+  @media (max-width: 300px){
+    #chat{
+        width: 200px;
+    }
+}
+
+  @media (max-width: 250px){
+    .carousel-inner p{
+        font-size: 0.1rem;
+    }
+    #discover{
+        height: 300px;
+      }
+
+}

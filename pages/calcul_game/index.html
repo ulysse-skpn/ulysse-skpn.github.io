@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Calcul game</title>
+</head>
+<body>
+    
+    
+    <article class="jumbotron">
+        <h1 class="text-center">Combien font ...</h1>
+        <section class="row justify-content-center">
+            <div class="col-12">
+                <div class="card-group mt-5">
+                    <div class="card mx-3 bg-info rounded col-sm-12 col-lg-5 py-3">
+                        <div class="card-body">
+                            <h1 class="card-text text-white text-center" id="numberOne"></h1>
+                        </div>
+                    </div>
+                    <div class="card mx-3 bg-dark rounded col-sm-12 col-lg-2 py-3">
+                        <div class="card-body">
+                        <h1 class="card-text text-white text-center">+</h1>
+                        </div>
+                    </div>
+                    <div class="card mx-3 bg-info rounded col-sm-12 col-lg-5 py-3">
+                        <div class="card-body">
+                        <h1 class="card-text text-white text-center" id="numberTwo"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+
+
+    <section class="row justify-content-center mt-3">
+        <section class="col-4">
+            <form id="calculform">
+                <div class="input-group input-group-lg mb-3">
+                    <input type="number" name="resultAddition" class="form-control-lg" min="0" placeholder="Ca fait..." aria-label="Ca fait..." aria-describedby="basic-addon2" id="resultAddition">
+                    <div class="input-group-append">
+                        <button class="btn btn-info btn-lg" type="submit" id="buttonSubmit">Valider !</button>
+                    </div>
+                </div>   
+            </form>
+        </section>
+    </section>
+
+    <section class="row justify-content-center mt-3">
+        <section class="col-2.5">
+            <div class="card">
+                <div class="card-body py-4">
+                    <h1 class="card-text text-center" id="resultat" class="aze">Fais le calcul !</h1>
+                </div>
+            </div> 
+        </section>
+    </section>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>

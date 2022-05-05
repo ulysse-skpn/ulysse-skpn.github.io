@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie discover</title>
+
+
+    <!-- BOOTSTRAP CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- CSS PERSO -->
+    <link rel="stylesheet" href="assets/style.css">
+
+
+    <!-- NECESSAIRE AU BON FONCTIONNEMENT DU CHAT !!! -->
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+    
+</head>
+<body>
+
+
+
+  <header id="alignementHeader">
+    <nav class="navbar navbar-expand-sm">
+        <a class="navbar-brand" href="accueil.html" id="Moviediscover">Movie Discover</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#" id="buttonSeConnecter" data-target="modalConnexion" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="buttonSinscrire" data-target="modalInscription" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">S'inscrire</a>
+                </li>
+                  <li class="nav-item" id="displayChat">
+                    <a class="nav-link" href="#" id="buttonChat" data-target="modalChat" data-toggle="modal" aria-disabled="true" role="link" onclick="maintenance()">Chat</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="decouverte" data-target="#modalDecouverte" data-toggle="modal">Découverte</a>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="fas fa-grip-horizontal"></i>
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" id="dropright">
+                      <li><a tabindex="-1" href="actualités.html">Actualités</a></li>
+                      <li class="dropdown-submenu">
+                      <a class="test" tabindex="-1" href="#">Catégories <span class="caret"></span></a>
+                        <ul class="dropdown-menu" id="submenu">
+                          <li><a tabindex="-1" href="action.html">Action</a></li>
+                          <li><a tabindex="-1" href="horreur.html">Horreur</a></li>
+                          <li><a tabindex="-1" href="fantastique.html">Fantastique</a></li>
+                          <li><a tabindex="-1" href="jeunesse.html">Jeunesse</a></li>
+                          <li><a tabindex="-1" href="comedie.html">Comédie</a></li>
+                        </ul>
+                      </li>
+                      <li><a tabindex="-1" href="contact.html">Contact</a></li>
+                    </ul>
+                    </div>
+                    <script src="js/dropright.js"></script>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <!-- MODAL SE CONNECTER -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalConnexion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="connectForm">
+                    <div class="modal-header"><h5 class="modal-title" id="exampleModalCenterTitle">Se connecter</h5></div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailConnexion">
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordConnexion">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Déconnexion</button>
+                      <button type="submit" class="btn btn-primary" id="connect">Connexion</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- MODAL S'INSCRIRE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalInscription" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <form id="signUpForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle2">S'inscrire</h5>
+                    </div>
+                    <div class="modal-body">
+                        <label class="d-block my-3">Adresse Email</label>
+                        <input type="email" placeholder='Email' id="inputEmailInscription">
+                        <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit 
+                        </small>
+                        <label class="d-block my-3">Mot de passe</label>
+                        <input type="password" placeholder='Mot de passe' id="inputPasswordInscription">
+                        <label class="d-block my-3">Confirmez votre mot de passe</label>
+                        <input type="password" placeholder='Confirmez Mot de passe' id="inputAnotherPasswordInscription">
+                        <div class="form-group form-check my-3">
+                            <input type="checkbox" id="condition" class="form-check-input">
+                            <label class="form-check-label yellowText"><a href="#">Accepter les conditions générales</a></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="createAccount">Création de compte</button>
+                    </div>
+              </form>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- MODAL CHAT -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalChat" tabindex="-1" role="dialog" aria-labelledby="modalChat" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div id="chat">
+                <div id="firechat-wrapper">
+                  <script src="js/firechat.js"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!-- MODAL DECOUVERTE -->
+      <!-- Modal -->
+      <div class="modal fade" id="modalDecouverte" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-body" >
+                  <img src="" alt="image à découvrir" id="discover">
+                <script src="js/discover.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+
+
+
+    <div class="text-center" id="_categories_">
+        <a href="action.html" class="h3 my-5 mx-3 yellowText">Action</a>
+            
+        <a href="horreur.html" class="h3 my-5 mx-3 yellowText">Horreur</a>
+        
+        <a href="fantastique.html" class="h3 my-5 mx-3 yellowText">Fantastique</a>
+        
+        <a href="jeunesse.html" class="h3 my-5 mx-3 yellowText">Jeunesse</a>
+        
+        <a href="comedie.html" class="h3 my-5 mx-3 yellowText">Comédie</a>
+        </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="text-center mb-4 seb" id="genre">Fantastique</h1>
+        <h1 id="replaceTitle1">BGG</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/ghaMtvx1oc4?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/fantasttique-1.jpg" alt="" id="image_a_remplacer1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer1'>
+          <p>Le Bon Gros Géant ne ressemble pas du tout aux autres habitants du Pays des Géants. Il mesure plus de 7 mètres de haut et possède de grandes oreilles et un odorat très fin. Il n’est pas très malin mais tout à fait adorable, et assez secret. Les géants comme le Buveur de sang et l’Avaleur de chair fraîche, sont deux fois plus grands que lui et aux moins deux fois plus effrayants, et en plus, ils mangent les humains. Le BGG, lui, préfère les schnockombres et la frambouille. À son arrivée au Pays des Géants, la petite Sophie, une enfant précoce de 10 ans qui habite Londres, a d’abord peur de ce mystérieux géant qui l’a emmenée dans sa grotte, mais elle va vite se rendre compte qu’il est très gentil. Comme elle n’a encore jamais vu de géant, elle a beaucoup de questions à lui poser. Le BGG emmène alors Sophie au Pays des Rêves, où il recueille les rêves et les envoie aux enfants. Il va tout apprendre à Sophie sur la magie et le mystère des rêves…
+              Avant leur rencontre, le BGG et Sophie avaient toujours été livrés à eux-mêmes, chacun dans son monde. C’est pourquoi leur affection l’un pour l’autre ne fait que grandir. Mais la présence de la petite fille au Pays des Géants attire bientôt l’attention des autres géants… 
+              Sophie et le BGG quittent bientôt le Pays des Géants pour aller à Londres voir La Reine et l’avertir du danger que représentent les géants. Mais il leur faut d’abord convaincre la souveraine et sa domestique, Mary que les géants existent bel et bien ! Tous ensemble, ils vont mettre au point un plan pour se débarrasser des méchants géants une bonne fois pour toutes…</p>
+        </div>
+      </div>
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle2">La forme de l'eau</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/e5AW-_ZPpDg?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/fantasttique-2.jpg" alt="" id="image_a_remplacer2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer2'>
+          <p>Modeste employée d’un laboratoire gouvernemental ultrasecret, Elisa mène une existence solitaire, d’autant plus isolée qu’elle est muette. Sa vie bascule à jamais lorsqu’elle et sa collègue Zelda découvrent une expérience encore plus secrète que les autres…</p>
+        </div>
+      </div>
+     
+
+
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle3">le livre de la jungle</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/9fwh1DAx3xo?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/fantasttique-3.jpg" alt="" id="image_a_remplacer3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer3'>
+          <p>Les aventures de Mowgli, un petit homme élevé dans la jungle par une famille de loups. Mais Mowgli n’est plus le bienvenu dans la jungle depuis que le redoutable tigre Shere Khan, qui porte les cicatrices des hommes, promet d’éliminer celui qu’il considère comme une menace. Poussé à abandonner le seul foyer qu’il ait jamais connu, Mowgli se lance dans un voyage captivant, à la découverte de soi, guidé par son mentor la panthère Bagheera et l’ours Baloo. Sur le chemin, Mowgli rencontre des créatures comme Kaa, un pyton à la voix séduisante et au regard hypnotique et le Roi Louie, qui tente de contraindre Mowgli à lui révéler le secret de la fleur rouge et insaisissable : le feu.</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle4">Harry Potter et la chambre des secrets</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/3ak6jkrPhTg?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/fantasttique-4.jpg" alt="" id="image_a_remplacer4">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer4'>
+          <p>Alors que l'oncle Vernon, la tante Pétunia et son cousin Dudley reçoivent d'importants invités à dîner, Harry Potter est contraint de passer la soirée dans sa chambre. Dobby, un elfe, fait alors son apparition. Il lui annonce que de terribles dangers menacent l'école de Poudlard et qu'il ne doit pas y retourner en septembre. Harry refuse de le croire.
+              Mais sitôt la rentrée des classes effectuée, ce dernier entend une voix malveillante. Celle-ci lui dit que la redoutable et légendaire Chambre des secrets est à nouveau ouverte, permettant ainsi à l'héritier de Serpentard de semer le chaos à Poudlard. Les victimes, retrouvées pétrifiées par une force mystérieuse, se succèdent dans les couloirs de l'école, sans que les professeurs - pas même le populaire Gilderoy Lockhart - ne parviennent à endiguer la menace. Aidé de Ron et Hermione, Harry doit agir au plus vite pour sauver Poudlard.</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle5">Le Hobbit</h1>
+        <div class="film1">
+          <iframe class="float-right d-inline-block" src="https://www.youtube.com/embed/tiy7peMH3g8?controls=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/fantasttique-5.jpg" alt="" id="image_a_remplacer5">
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer5'>
+          <p>Dans UN VOYAGE INATTENDU, Bilbon Sacquet cherche à reprendre le Royaume perdu des Nains d'Erebor, conquis par le redoutable dragon Smaug. Alors qu'il croise par hasard la route du magicien Gandalf le Gris, Bilbon rejoint une bande de 13 nains dont le chef n'est autre que le légendaire guerrier Thorin Écu-de-Chêne. Leur périple les conduit au cœur du Pays Sauvage, où ils devront affronter des Gobelins, des Orques, des Ouargues meurtriers, des Araignées géantes, des Métamorphes et des Sorciers…
+              Bien qu'ils se destinent à mettre le cap sur l'Est et les terres désertiques du Mont Solitaire, ils doivent d'abord échapper aux tunnels des Gobelins, où Bilbon rencontre la créature qui changera à jamais le cours de sa vie : Gollum.
+              C'est là qu'avec Gollum, sur les rives d'un lac souterrain, le modeste Bilbon Sacquet non seulement se surprend à faire preuve d'un courage et d'une intelligence inattendus, mais parvient à mettre la main sur le "précieux" anneau de Gollum qui recèle des pouvoirs cachés… Ce simple anneau d'or est lié au sort de la Terre du Milieu, sans que Bilbon s'en doute encore…</p>
+        </div>
+      </div>  
+  
+     
+
+
+
+          <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+          <footer id='footer'>
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <span class=" h5 mx-2 my-2">©</span>
+                <div class="h5 mx-2 my-2">
+                  <a href="contact.html" target="blank">CONTACT</a>
+                </div>
+                <span class=" h5 mx-2 my-2">/</span>
+                <div class="h5 mx-2 my-2 ">
+                  <a href="mentions_legales.html" target="blank">MENTIONS LEGALES</a>
+                </div>          
+              </div>
+            </div>
+          </footer>
+        <!-- FIN DE FOOTER -->
+
+
+<!-- BOOTSTRAP JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-messaging.js"></script>
+
+
+<!-- JS PERSO -->
+<script src="js/input.js"></script>
+<script src="js/config.js"></script>
+
+</body>
+</html>
