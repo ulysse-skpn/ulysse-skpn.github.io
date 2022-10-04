@@ -5,4 +5,4 @@ Concepteur / Développeur d'application web et mobile. Je travaille avec les tec
 
 ### Contact
 LinkedIn : Ulysse Sekpon
-Lien direct vers mon portfolio : portfolio.ulysse-sekpon-webdev.com
+Lien direct vers mon portfolio : https://ulysse-skpn.github.io/
